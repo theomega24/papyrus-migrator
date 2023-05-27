@@ -100,8 +100,10 @@ public class Main {
                     statement.execute();
 
                     Path oldFile = Path.of(oldDataFolder, String.format("%s-%s-%s", project.name(), version.name(), build.build()));
-                    Path newFile = Path.of(dataFolder, fileId);
-                    Files.copy(oldFile, newFile);
+                    if (Files.exists(oldFile)) {
+                        Path newFile = Path.of(dataFolder, fileId);
+                        Files.copy(oldFile, newFile);
+                    }
                 }
             }
         }
