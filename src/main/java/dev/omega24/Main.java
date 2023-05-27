@@ -44,8 +44,6 @@ public class Main {
         Path dataJson = Path.of(oldDataFolder, "data.json");
         JsonDatabase oldData = mapper.readValue(dataJson.toFile(), JsonDatabase.class);
 
-        int counter = 0;
-
         for (JsonDatabase.Project project : oldData.projects()) {
             String projectId = UUID.randomUUID().toString();
 
@@ -64,8 +62,6 @@ public class Main {
                 statement.execute();
 
                 for (JsonDatabase.Project.Version.Build build : version.builds()) {
-                    Files.createFile(Path.of(oldDataFolder, String.format("%s-%s-%s", project.name(), version.name(), build.build())));
-
                     String buildId = UUID.randomUUID().toString();
                     String result = build.result().equals("SUCCESS") ? "SUCCESS" : "FAILURE";
 
