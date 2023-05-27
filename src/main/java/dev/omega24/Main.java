@@ -105,7 +105,7 @@ public class Main {
 
                     Path oldFile = Path.of(oldDataFolder, String.format("%s-%s-%s", project.name(), version.name(), build.build()));
                     Path newFile = Path.of(dataFolder, fileId);
-                    Files.move(oldFile, newFile);
+                    Files.copy(oldFile, newFile);
                 }
             }
         }
